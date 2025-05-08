@@ -1,0 +1,27 @@
+Itse OGS:n asentaminen on yksinkertaisesti 
+pip install ogs
+
+Mutta ainakin itselläni puuttui huomattavasti riippuvuuksia, joiden asentamista suosittelen ennen ogs:n asentamista:
+
+Riippuvuudet:
+pip install notebook ogs6py ogstools h5py matplotlib numpy pandas vtk pyvista meshio[all] nbconvert nb2hugo
+pip install --upgrade nbdime
+pip install --upgrade gmsh
+pip install https://github.com/joergbuchwald/VTUinterface/archive/refs/heads/master.zip
+sudo apt-get install python3-scipy
+
+Snakemaken asentamiseksi tarvitaan conda ja mamba. Mikäli Anaconda puuttuu, lataa se osoitteesta https://www.anaconda.com/download/ ja aja se sh-tiedosto komennolla bash Anaconda-jne ja noudata ohjeita. Muista avata terminaali uudestaan asennuksen jälkeen ja aja komento source ~/.bashrc ja varmista, että conda toimii ajamalla conda list
+
+Mamban asennukseen menee pahimmillaan useita vuorokausia, mutta sitä voi nopeuttaa huomattavasti asentamalla libmamban:
+conda update conda
+conda update conda-build
+conda install -n base conda-libmamba-solver
+
+Mamban ja Snakemaken asennus:
+conda config --set solver libmamba
+conda install -n base -c conda-forge mamba
+conda activate base
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+
+Asenna ogs:
+pip install ogs
